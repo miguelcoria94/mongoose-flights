@@ -8,4 +8,43 @@
 <p>Departs: <%= flight.departs.toDateString() %></p>
 <p>Airport: <%= flight.airport %></p>
 
+<h3>Add Destination</h3>
+<form action="/flights/<%= flight._id %>/destinations" method="POST">
+  <label for="airport">Airport:</label>
+  <select name="airport" id="airport">
+    <!-- Dynamically exclude options already used in flight.destinations -->
+    <% 
+    let allDestinations = ["AUS", "DFW", "DEN", "LAX", "SAN", "IAH"];
+    var alreadyUsed = flight.destinations.map(destination => destination.airport);
+    var availableDestinations = allDestinations.filter(airport => !alreadyUsed.includes(airport));
+
+    availableDestinations.forEach(function(airport) { %>
+      <option value="<%= airport %>"><%= airport %></option>
+    <% }) %>
+  </select>
+  <br />
+  <label for="arrival">Arrival:</label>
+  <input type="date" name="arrival" id="arrival" />
+  <br />
+  <button type="submit">Add Destination</button>
+</form>
+
+<h3>Destinations</h3>
+
+<ul>
+  <!-- v-if destinations.length -->
+  <% if (destinations) { %> <% destinations.forEach(function(destination) { %>
+  <li>
+    <%= destination.airport %> -
+    <span
+      style="color: <%= destination.arrival.getTime() < Date.now() ? 'red' : 'green' %>"
+    >
+      <%= destination.arrival.toDateString() %>
+    </span>
+  </li>
+  <% }) %> <% } else { %>
+  <li>No destinations added</li>
+  <% } %>
+</ul>
+
 <%- include('../partials/footer') %>

@@ -23,7 +23,7 @@ async function create(req, res) {
   try {
     const flight = new Flight(req.body);
     await Flight.create(flight);
-    res.redirect("flights");
+    res.redirect("/flights");
   } catch (err) {
     res.render("flights/new", { error: err.message, departsDate: req.body.departs});
   }
@@ -31,7 +31,7 @@ async function create(req, res) {
 
 async function show(req, res) {
   const flight = await Flight.findById(req.params.id);
-  res.render("flights/_id", { flight });
+  res.render("flights/_id", { flight, destinations: flight.destinations });
 }
 
 module.exports = {
