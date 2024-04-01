@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+
+<a href="/flights">Back to Flights</a>
+
+<h2>Flight Details</h2>
+
+<h3><%= flight.airline %> - <%= flight.flightNo %></h3>
+<p>Departs: <%= flight.departs.toDateString() %></p>
+<p>Airport: <%= flight.airport %></p>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+
+<h2>Flights</h2>
+
+<ul>
+  <!-- v-if flights else no flight -->
+  <% if(flights.length) { %> <% flights.forEach(function(flight) { %>
+  <li>
+    <a href="/flights/<%= flight._id %>">
+      <%= flight.airline %> - <%= flight.flightNo %>
+    </a>
+
+    <!-- departsdate -->
+    <p
+    style="color: <%= flight.departs.getTime() < Date.now() ? 'red' : 'green' %>"
+    >Departs: <%= flight.departs.toDateString() %></p>
+
+  </li>
+  <% }) %> <% } else { %>
+  <li>No flights</li>
+    <% } %>
+</ul>
+
+<%- include('../partials/footer') %>
