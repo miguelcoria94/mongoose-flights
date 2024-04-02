@@ -63,6 +63,12 @@
     >
       $<%= ticket.price %>
     </span>
+
+    <!-- delete ticket form -->
+    <form action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>" method="POST">
+      <button type="submit">Delete</button>
+      <!-- hidden -->
+    </form>
   </li>
   <% }) %> <% } else { %>
   <li>No tickets purchased</li>

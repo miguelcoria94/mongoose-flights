@@ -20,6 +20,7 @@ async function newFlight(req, res) {
   res.render("flights/new", { error: "", departsDate });
 }
 
+
 async function create(req, res) {
   try {
     const flight = new Flight(req.body);
