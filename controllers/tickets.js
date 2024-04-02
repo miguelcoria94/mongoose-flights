@@ -39,4 +39,3 @@ module.exports = {
   create,
   delete: deleteTicket,
 };
-// Path: controllers/flights.js

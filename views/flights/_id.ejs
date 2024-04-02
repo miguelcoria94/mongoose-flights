@@ -12,7 +12,6 @@
 <form action="/flights/<%= flight._id %>/destinations" method="POST">
   <label for="airport">Airport:</label>
   <select name="airport" id="airport">
-    <!-- Dynamically exclude options already used in flight.destinations -->
     <% 
     let allDestinations = ["AUS", "DFW", "DEN", "LAX", "SAN", "IAH"];
     var alreadyUsed = flight.destinations.map(destination => destination.airport);
@@ -49,12 +48,10 @@
 
 <h3>Tickets</h3>
 
-<!-- add ticket button a tag -->
 <a href="/flights/<%= flight._id %>/tickets/new">Add Ticket</a>
 
 
 <ul>
-  <!-- v-if tickets.length -->
   <% if (tickets.length) { %> <% tickets.forEach(function(ticket) { %>
   <li>
     <%= ticket.seat %> -
@@ -64,10 +61,9 @@
       $<%= ticket.price %>
     </span>
 
-    <!-- delete ticket form -->
     <form action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>" method="POST">
       <button type="submit">Delete</button>
-      <!-- hidden -->
+
     </form>
   </li>
   <% }) %> <% } else { %>
