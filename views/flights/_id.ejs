@@ -47,4 +47,26 @@
   <% } %>
 </ul>
 
+<h3>Tickets</h3>
+
+<!-- add ticket button a tag -->
+<a href="/flights/<%= flight._id %>/tickets/new">Add Ticket</a>
+
+
+<ul>
+  <!-- v-if tickets.length -->
+  <% if (tickets.length) { %> <% tickets.forEach(function(ticket) { %>
+  <li>
+    <%= ticket.seat %> -
+    <span
+      style="color: <%= ticket.price < 500 ? 'green' : 'red' %>"
+    >
+      $<%= ticket.price %>
+    </span>
+  </li>
+  <% }) %> <% } else { %>
+  <li>No tickets purchased</li>
+  <% } %>
+</ul>
+
 <%- include('../partials/footer') %>

@@ -1,4 +1,5 @@
 const Flight = require("../models/flight");
+const Ticket = require("../models/ticket");
 
 async function index(req, res) {
   const flights = await Flight.find({}).sort({ departs: "asc" });
@@ -31,7 +32,9 @@ async function create(req, res) {
 
 async function show(req, res) {
   const flight = await Flight.findById(req.params.id);
-  res.render("flights/_id", { flight, destinations: flight.destinations });
+  const tickets = await Ticket.find({ flight: flight._id });
+
+  res.render("flights/_id", { flight, destinations: flight.destinations, tickets });
 }
 
 module.exports = {

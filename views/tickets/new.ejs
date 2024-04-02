@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<h2>New Ticket for Flight <%= flightId %></h2>
+
+<form action="/flights/<%= flightId %>/tickets" method="POST">
+  <label for="seat">Seat:</label>
+  <input type="text" name="seat" id="seat" regex="^[A-F][1-9]\d?$" />
+  <br />
+  <label for="price">Price:</label>
+  <input type="number" name="price" id="price" />
+  <br />
+  <button type="submit">Add Ticket</button>
+
+  <% if(error) { %>
+  <p style="color: red"><%= error %></p> 
+  <p>Seat must be in the format: A1, B2, etc.</p>
+  <% } %>
+</form>
+
+<%- include('../partials/footer') %>
